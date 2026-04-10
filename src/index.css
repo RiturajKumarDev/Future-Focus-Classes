@@ -1,0 +1,60 @@
+:root {
+  /* Primary Brand Colors */
+  --primary-dark: #1a1a2e; /* Deep navy - represents darkness/tamas */
+  --primary-gold: #ffd700; /* Golden yellow - represents light/knowledge */
+  --primary-blue: #0f3460; /* Deep blue - professional, trustworthy */
+
+  /* Accent Colors */
+  --accent-orange: #ff6b35; /* Warm orange - energy, enthusiasm */
+  --accent-teal: #00b4d8; /* Bright teal - modern, clarity */
+  --accent-purple: #6c63ff; /* Soft purple - wisdom, creativity */
+
+  /* Neutral Colors */
+  --white: #ffffff;
+  --off-white: #f8f9fa;
+  --light-gray: #e9ecef;
+  --medium-gray: #ced4da;
+  --dark-gray: #6c757d;
+  --black: #212529;
+
+  /* Success/Error States */
+  --success: #28a745;
+  --error: #dc3545;
+  --warning: #ffc107;
+  --info: #17a2b8;
+}
+
+.light-theme {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f9fa;
+  --text-primary: #1a1a2e;
+  --text-secondary: #6c757d;
+  --border-color: #e9ecef;
+  --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.dark-theme {
+  --bg-primary: #1a1a2e;
+  --bg-secondary: #0f3460;
+  --text-primary: #ffffff;
+  --text-secondary: #ced4da;
+  --border-color: #2c2c3e;
+  --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.gradient {
+  /* Hero Section Gradient - Light emerging from darkness */
+  --gradient-hero: linear-gradient(
+    135deg,
+    #1a1a2e 0%,
+    #0f3460 50%,
+    #ffd700 100%
+  );
+
+  /* CTA Button Gradient */
+  --gradient-cta: linear-gradient(90deg, #ffd700 0%, #ff6b35 100%);
+
+  /* Card Gradient */
+  --gradient-card: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+}
+
