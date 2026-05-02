@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Cookies from "js-cookie";
-import './StudentDashboard.css';
+import './studentDashboard.css';
 
 const StudentDashboard = () => {
     const navigate = useNavigate();
