@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Cookies from "js-cookie";
-import './CreateCourse.css';
+import './createCourse.css';
 import { uploadCourseToServer } from '../../services/courseService';
 import { deleteImageToSever, uploadImageToSever } from '../../services/imageService';
 
