@@ -1,4 +1,5 @@
-const BASE_URL = "http://localhost:3000/api/";
+// const BASE_URL = "http://localhost:3000/api/";
+const BASE_URL = "https://future-focus-classes-backend.vercel.app/api/";
 
 export const registerUserToServer = async (student) => {
     const response = await fetch(`${BASE_URL}student/register`, {
