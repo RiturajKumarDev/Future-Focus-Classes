@@ -95,7 +95,6 @@ const HomePage = () => {
                     navigation("/");
             })
             .catch((error) => {
-                alert("Error", error);
                 navigation("/");
             });
     }, []);
@@ -128,7 +127,6 @@ const HomePage = () => {
                         })
                 }
             }).catch((errors) => {
-                alert(errors);
             });
     }, []);
 
@@ -170,7 +168,6 @@ const HomePage = () => {
                         })
                 }
             }).catch((errors) => {
-                alert(errors);
             });
     }, []);
 
@@ -231,7 +228,6 @@ const HomePage = () => {
                         })
                 }
             }).catch((errors) => {
-                alert(errors);
             });
     }, []);
 
