@@ -123,7 +123,6 @@ const HomePage = () => {
                         .then((data) => {
                             setTeachersData(data);
                         }).catch((error) => {
-                            console.log(error);
                         })
                 }
             }).catch((errors) => {
@@ -164,7 +163,6 @@ const HomePage = () => {
                         .then((data) => {
                             setStudentResults(data);
                         }).catch((error) => {
-                            console.log(error);
                         })
                 }
             }).catch((errors) => {
@@ -224,7 +222,6 @@ const HomePage = () => {
                         .then((data) => {
                             setTestimonials(data);
                         }).catch((error) => {
-                            console.log(error);
                         })
                 }
             }).catch((errors) => {
