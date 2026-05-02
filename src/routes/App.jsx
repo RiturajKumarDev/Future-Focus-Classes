@@ -7,6 +7,7 @@ import Login from '../fragments/auth/Login'
 import Register from '../fragments/auth/Register'
 import HomePage from '../fragments/HomePage'
 import CoursePage from '../fragments/CoursePage'
+import UploadStudentResult from '../fragments/teacher/UploadStudentResult'
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
 
       <Route path="/teacher-dashboard" element={<TeacherDashboard />} />
       <Route path="/create-course" element={<CreateCourse />} />
+      <Route path="/UploadStudentResult" element={<UploadStudentResult />} />
     </Routes>
   )
 }

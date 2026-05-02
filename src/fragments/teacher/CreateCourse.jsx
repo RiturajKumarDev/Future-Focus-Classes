@@ -23,6 +23,7 @@ const CreateCourse = () => {
         price: '',
         thumbnailUrl: null,
         instructor: '',
+        instructorEmail: '',
 
         // Description
         shortDescription: '',
@@ -48,7 +49,7 @@ const CreateCourse = () => {
     useEffect(() => {
         const user = JSON.parse(Cookies.get("userData") || null);
         if (user) {
-            setCourseData({ ...courseData, instructor: user.fullName });
+            setCourseData({ ...courseData, instructor: user.fullName, instructorEmail: user.email });
             if (user.userType != 'teacher')
                 navigate("/login");
         } else

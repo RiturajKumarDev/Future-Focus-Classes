@@ -306,6 +306,11 @@ const TeacherDashboard = () => {
                             <button className="action-btn" onClick={handleAddCourse}>
                                 <span>➕</span> Create New Course
                             </button>
+                            <a href="/UploadStudentResult">
+                                <button className="action-btn">
+                                    <span>➕</span> Upload Student Result
+                                </button>
+                            </a>
                             <button className="action-btn" onClick={handleCreateAssignment}>
                                 <span>📝</span> Create Assignment
                             </button>

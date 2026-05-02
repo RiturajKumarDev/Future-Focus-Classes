@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Cookies from "js-cookie";
 import './homePage.css';
+import { getCoursesToServer } from '../services/courseService';
+import { getTechersToServer } from '../services/teacherService';
+import { getStudentResultsToServer } from '../services/resultService';
 
 const HomePage = () => {
     const navigate = useNavigate();
@@ -55,93 +58,54 @@ const HomePage = () => {
     }, []);
 
     // Courses data
-    const courses = [
+    const [courses, setCourseData] = useState([
         {
-            id: 1,
-            name: "Mathematics Advanced",
-            category: "Academic",
-            instructor: "Prof. Sunil Kumar",
-            duration: "48 hours",
+            _id: 1,
+            title: 'Mathematics Advanced',
+            category: 'academic',
+            instructor: 'Prof. Sunil Kumar',
+            totalDuration: '48 hours',
+            totalLectures: 48,
             students: 1250,
             rating: 4.8,
-            price: "₹9,999",
-            image: "📐",
-            color: "#FF6B35",
-            description: "Master advanced mathematics concepts including calculus, algebra, and trigonometry."
+            price: '₹9,999',
+            level: 'Advanced',
+            thumbnailUrl: '📐',
+            color: '#FF6B35',
+            shortDescription: 'Master advanced mathematics concepts including calculus, algebra, and trigonometry. Perfect for Class 11-12 and competitive exam preparation.',
+            learningObjectives: [
+                'Quadratic Equations & Inequalities',
+                'Sequence & Series',
+                'Trigonometry',
+                'Calculus - Limits & Derivatives',
+                'Probability & Statistics'
+            ],
+            features: ['Live Classes', 'Recorded Sessions', 'Study Material', 'Doubt Clearing']
         },
-        {
-            id: 2,
-            name: "Science (PCB)",
-            category: "Academic",
-            instructor: "Dr. Priya Singh",
-            duration: "60 hours",
-            students: 980,
-            rating: 4.9,
-            price: "₹11,999",
-            image: "🔬",
-            color: "#00B4D8",
-            description: "Comprehensive science course covering Physics, Chemistry, and Biology."
-        },
-        {
-            id: 3,
-            name: "JEE Main & Advanced",
-            category: "Competitive",
-            instructor: "Dr. Ramesh Chandra",
-            duration: "200 hours",
-            students: 2500,
-            rating: 4.9,
-            price: "₹24,999",
-            image: "🎯",
-            color: "#FF5722",
-            description: "Complete preparation for JEE Main and Advanced with expert faculty."
-        },
-        {
-            id: 4,
-            name: "Web Development Bootcamp",
-            category: "Coding",
-            instructor: "Mr. Amit Patel",
-            duration: "80 hours",
-            students: 1500,
-            rating: 4.9,
-            price: "₹18,999",
-            image: "💻",
-            color: "#2196F3",
-            description: "Become a full-stack web developer with HTML, CSS, JavaScript, React."
-        },
-        {
-            id: 5,
-            name: "Spoken English",
-            category: "Language",
-            instructor: "Ms. Sarah Johnson",
-            duration: "40 hours",
-            students: 3200,
-            rating: 4.8,
-            price: "₹5,999",
-            image: "💬",
-            color: "#00BCD4",
-            description: "Improve your English speaking skills for professional and personal growth."
-        },
-        {
-            id: 6,
-            name: "Digital Marketing",
-            category: "Skill",
-            instructor: "Mr. Rahul Mehta",
-            duration: "60 hours",
-            students: 1850,
-            rating: 4.8,
-            price: "₹15,999",
-            image: "📱",
-            color: "#FFC107",
-            description: "Master digital marketing skills including SEO, Social Media, and Google Ads."
-        }
-    ];
+    ]);
+
+    useEffect(() => {
+        getCoursesToServer()
+            .then((response) => {
+                if (response.ok) {
+                    response.json().then((courses) => {
+                        setCourseData(courses);
+                    })
+                } else
+                    navigation("/");
+            })
+            .catch((error) => {
+                alert("Error", error);
+                navigation("/");
+            });
+    }, []);
 
     // Teachers data
-    const teachers = [
+    const [teachers, setTeachersData] = useState([
         {
-            id: 1,
-            name: "Prof. Sunil Kumar",
-            subject: "Mathematics",
+            _id: 1,
+            fullName: "Prof. Sunil Kumar",
+            teachingSubjects: ["Mathematics"],
             experience: "15+ years",
             students: "5000+",
             rating: 4.9,
@@ -150,48 +114,28 @@ const HomePage = () => {
             qualification: "Ph.D. Mathematics",
             bio: "Expert in making complex math concepts simple and engaging."
         },
-        {
-            id: 2,
-            name: "Dr. Priya Singh",
-            subject: "Science",
-            experience: "12+ years",
-            students: "4000+",
-            rating: 4.9,
-            image: "👩‍🔬",
-            color: "#00B4D8",
-            qualification: "Ph.D. Chemistry",
-            bio: "Passionate educator making science fun and understandable."
-        },
-        {
-            id: 3,
-            name: "Mr. Amit Patel",
-            subject: "Web Development",
-            experience: "10+ years",
-            students: "3000+",
-            rating: 4.8,
-            image: "💻",
-            color: "#2196F3",
-            qualification: "M.Tech CS",
-            bio: "Industry expert with real-world coding experience."
-        },
-        {
-            id: 4,
-            name: "Ms. Sarah Johnson",
-            subject: "English",
-            experience: "10+ years",
-            students: "4500+",
-            rating: 4.9,
-            image: "👩‍🏫",
-            color: "#00BCD4",
-            qualification: "MA English",
-            bio: "Communication expert helping students speak with confidence."
-        }
-    ];
+    ]);
+
+    useEffect(() => {
+        getTechersToServer()
+            .then((response) => {
+                if (response.ok) {
+                    response.json()
+                        .then((data) => {
+                            setTeachersData(data);
+                        }).catch((error) => {
+                            console.log(error);
+                        })
+                }
+            }).catch((errors) => {
+                alert(errors);
+            });
+    }, []);
 
     // Student results / success stories
-    const studentResults = [
+    const [studentResults, setStudentResults] = useState([
         {
-            id: 1,
+            _id: 1,
             name: "Rahul Sharma",
             achievement: "JEE Advanced AIR 245",
             course: "JEE Main & Advanced",
@@ -202,7 +146,7 @@ const HomePage = () => {
             year: "2024"
         },
         {
-            id: 2,
+            _id: 2,
             name: "Priya Patel",
             achievement: "NEET AIR 189",
             course: "NEET Preparation",
@@ -212,29 +156,23 @@ const HomePage = () => {
             testimonial: "The structured curriculum and regular mock tests helped me crack NEET with an excellent rank. Thank you Future Focus!",
             year: "2024"
         },
-        {
-            id: 3,
-            name: "Amit Kumar",
-            achievement: "Placed at Google",
-            course: "Web Development Bootcamp",
-            before: "Beginner",
-            after: "Expert",
-            image: "👨‍💻",
-            testimonial: "From zero coding knowledge to getting placed at Google - this course changed my life!",
-            year: "2024"
-        },
-        {
-            id: 4,
-            name: "Neha Gupta",
-            achievement: "CBSE Topper (98.6%)",
-            course: "Science (PCB)",
-            before: "88%",
-            after: "98.6%",
-            image: "👩‍🎓",
-            testimonial: "The personalized attention and doubt clearing sessions helped me become a board topper.",
-            year: "2024"
-        }
-    ];
+    ]);
+
+    useEffect(() => {
+        getStudentResultsToServer()
+            .then((response) => {
+                if (response.ok) {
+                    response.json()
+                        .then((data) => {
+                            setStudentResults(data);
+                        }).catch((error) => {
+                            console.log(error);
+                        })
+                }
+            }).catch((errors) => {
+                alert(errors);
+            });
+    }, []);
 
     // Features data
     const features = [
@@ -270,32 +208,32 @@ const HomePage = () => {
         }
     ];
 
-    const testimonials = [
+    const [testimonials, setTestimonials] = useState([
         {
-            id: 1,
+            _id: 1,
             name: "Rahul Sharma",
             role: "JEE Advanced Rank 245",
-            text: "The teaching methodology at Future Focus is exceptional. The faculty's dedication and the comprehensive study material helped me achieve my dream rank.",
+            testimonial: "The teaching methodology at Future Focus is exceptional. The faculty's dedication and the comprehensive study material helped me achieve my dream rank.",
             rating: 5,
             image: "👨‍🎓"
         },
-        {
-            id: 2,
-            name: "Priya Patel",
-            role: "NEET Rank 189",
-            text: "I joined Future Focus for NEET preparation and it was the best decision. The mock tests and doubt clearing sessions were game-changers.",
-            rating: 5,
-            image: "👩‍🎓"
-        },
-        {
-            id: 3,
-            name: "Amit Kumar",
-            role: "Software Engineer at Google",
-            text: "The Web Development course was comprehensive and practical. The projects and placement support helped me land my dream job.",
-            rating: 5,
-            image: "👨‍💻"
-        }
-    ];
+    ]);
+
+    useEffect(() => {
+        getStudentResultsToServer()
+            .then((response) => {
+                if (response.ok) {
+                    response.json()
+                        .then((data) => {
+                            setTestimonials(data);
+                        }).catch((error) => {
+                            console.log(error);
+                        })
+                }
+            }).catch((errors) => {
+                alert(errors);
+            });
+    }, []);
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -474,25 +412,27 @@ const HomePage = () => {
                     </div>
                     <div className="courses-grid">
                         {courses.map(course => (
-                            <div key={course.id} className="course-card">
+                            <div key={course._id} className="course-card">
                                 <div className="course-card-header" style={{ background: course.color }}>
-                                    <div className="course-icon">{course.image}</div>
+                                    <div className="course-icon">
+                                        <img className="course-thumbnail" src={course.thumbnailUrl} alt="course_thumbnailUrl" />
+                                    </div>
                                     <div className="course-category-badge">{course.category}</div>
                                 </div>
                                 <div className="course-card-body">
-                                    <h3>{course.name}</h3>
+                                    <h3>{course.title}</h3>
                                     <p className="course-instructor">👨‍🏫 {course.instructor}</p>
-                                    <p className="course-description">{course.description}</p>
+                                    <p className="course-description">{course.shortDescription}</p>
                                     <div className="course-meta">
-                                        <span>⏱️ {course.duration}</span>
+                                        <span>⏱️ {course.totalDuration}</span>
                                         <span>👥 {course.students}+</span>
                                         <span>⭐ {course.rating}</span>
                                     </div>
                                     <div className="course-footer">
-                                        <div className="course-price">{course.price}</div>
+                                        <div className="course-price">₹{course.price}</div>
                                         <button
                                             className="btn-view-course"
-                                            onClick={() => navigate(`/course/${course.id}`)}
+                                            onClick={() => navigate(`/course/${course._id}`)}
                                         >
                                             View Details →
                                         </button>
@@ -518,7 +458,7 @@ const HomePage = () => {
                     </div>
                     <div className="results-grid">
                         {studentResults.map(result => (
-                            <div key={result.id} className="result-card">
+                            <div key={result._id} className="result-card">
                                 <div className="result-icon">{result.image}</div>
                                 <h3>{result.name}</h3>
                                 <div className="result-achievement">{result.achievement}</div>
@@ -549,12 +489,14 @@ const HomePage = () => {
                     </div>
                     <div className="teachers-grid">
                         {teachers.map(teacher => (
-                            <div key={teacher.id} className="teacher-card">
+                            <div key={teacher._id} className="teacher-card">
                                 <div className="teacher-image" style={{ background: teacher.color }}>
                                     <div className="teacher-avatar">{teacher.image}</div>
                                 </div>
-                                <h3>{teacher.name}</h3>
-                                <p className="teacher-subject">{teacher.subject}</p>
+                                <h3>{teacher.fullName}</h3>
+                                {(teacher.teachingSubjects).map((subject) => {
+                                    <p className="teacher-subject">{subject}</p>
+                                })}
                                 <div className="teacher-stats">
                                     <span>📚 {teacher.experience}</span>
                                     <span>👥 {teacher.students}</span>
@@ -580,12 +522,12 @@ const HomePage = () => {
                             <div className="testimonial-content">
                                 <div className="testimonial-image">{testimonials[activeTestimonial].image}</div>
                                 <div className="testimonial-text">
-                                    <p>"{testimonials[activeTestimonial].text}"</p>
+                                    <p>"{testimonials[activeTestimonial].testimonial}"</p>
                                     <div className="testimonial-rating">
-                                        {'⭐'.repeat(testimonials[activeTestimonial].rating)}
+                                        {'⭐'.repeat(5)}
                                     </div>
                                     <h4>{testimonials[activeTestimonial].name}</h4>
-                                    <p className="testimonial-role">{testimonials[activeTestimonial].role}</p>
+                                    <p className="testimonial-role">{testimonials[activeTestimonial].achievement}</p>
                                 </div>
                             </div>
                         </div>

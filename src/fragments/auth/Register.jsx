@@ -203,7 +203,7 @@ const Register = () => {
         if (!verifyOTP()) return;
 
         const user = {
-            userType: userType,
+            userType: "student",
             fullName: formData.fullName,
             email: formData.email,
             mobile: formData.phone,
