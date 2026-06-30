@@ -1,0 +1,102 @@
+.prt-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.prt-stat-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 6px;
+  padding: 20px;
+}
+
+.prt-stat-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.prt-stat-value { font-size: 28px; font-weight: 800; }
+.prt-stat-label { font-size: 13px; font-weight: 600; color: var(--text-secondary); }
+.prt-stat-sub { font-size: 11px; color: var(--text-muted); }
+
+.prt-filters {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.prt-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.prt-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px 24px;
+}
+
+.prt-card-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+}
+
+.prt-card-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.prt-card-title { font-size: 16px; font-weight: 700; color: var(--text-primary); margin-bottom: 4px; }
+.prt-card-subject { font-size: 12px; color: var(--accent-blue); font-weight: 500; margin-bottom: 6px; }
+.prt-card-meta { display: flex; gap: 12px; font-size: 12px; color: var(--text-muted); }
+
+.prt-card-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+}
+
+.prt-score { text-align: center; }
+.prt-score-val { font-size: 22px; font-weight: 800; color: var(--accent-green); display: block; }
+.prt-score-label { font-size: 11px; color: var(--text-muted); }
+
+.prt-notice {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  background: rgba(139, 92, 246, 0.08);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  border-radius: var(--radius-lg);
+  padding: 16px 20px;
+  margin-top: 20px;
+}
+
+.prt-notice-icon { font-size: 20px; margin-top: 2px; flex-shrink: 0; }
+.prt-notice-title { font-size: 14px; font-weight: 700; color: var(--accent-purple); margin-bottom: 4px; }
+.prt-notice-text { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
+
+@media (max-width: 900px) {
+  .prt-stats { grid-template-columns: repeat(2, 1fr); }
+  .prt-card { flex-direction: column; align-items: flex-start; }
+  .prt-card-right { width: 100%; }
+}
