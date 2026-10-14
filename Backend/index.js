@@ -27,6 +27,7 @@ const discussionRouter = require("./routes/discussionRouter");
 const adminRouter = require("./routes/adminRouter");
 const instructorRouter = require("./routes/instructorRouter");
 const studentRouter = require("./routes/studentRouter");
+const mediaRouter = require("./routes/mediaRouter");
 
 // Backward compatibility legacy routes
 const { resourcesRouter } = require("./routes/resourcesRouter");
@@ -85,6 +86,11 @@ app.use("/api/discussions", discussionRouter);
 app.use("/api/admin", adminRouter);
 app.use("/api/instructor", instructorRouter);
 app.use("/api/student", studentRouter);
+
+// Media & Cloudinary Storage (Image & Video Upload / Delete)
+app.use("/api/upload", mediaRouter);
+app.use("/api/delete", mediaRouter);
+app.use("/api/media", mediaRouter);
 
 // Legacy routes preserved
 if (resourcesRouter) app.use("/api/resources", resourcesRouter);

@@ -1,4 +1,4 @@
-const BASE_URL = import.meta.env.VITE_BASE_URL;
+import { API_BASE_URL as BASE_URL } from "./api";
 
 export const registerUserToServer = async (student) => {
     const response = await fetch(`${BASE_URL}student/register`, {
