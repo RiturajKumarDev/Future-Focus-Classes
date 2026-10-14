@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { useApp } from "../../context/AppContext";
-import { BookOpen, Mail, Lock, ArrowRight, Eye, EyeOff, ShieldCheck } from "lucide-react";
-
+import { BookOpen, Mail, Lock, ArrowRight, Eye, EyeOff } from "lucide-react";
 const LoginPage = () => {
   const { login } = useAuth();
   const { showToast } = useApp();
@@ -44,12 +43,6 @@ const LoginPage = () => {
     } finally {
       setLoading(false);
     }
-  };
-
-  // Quick Demo Account Auto-Fill for Recruiters/Evaluators
-  const handleQuickLogin = (email, password) => {
-    setFormData({ email, password });
-    setError("");
   };
 
   return (
@@ -108,49 +101,8 @@ const LoginPage = () => {
             Sign in to your account
           </h1>
           <p style={{ fontSize: "14px", color: "var(--text-secondary)" }}>
-            Welcome back! Select a demo role or enter your credentials.
+            Welcome back! Please enter your credentials to continue.
           </p>
-        </div>
-
-        {/* Demo Account Pills (Super handy for Portfolio reviewers!) */}
-        <div
-          style={{
-            backgroundColor: "var(--bg-subtle)",
-            borderRadius: "var(--radius-md)",
-            padding: "12px",
-            marginBottom: "24px",
-            border: "1px dashed var(--border-light)",
-          }}
-        >
-          <div style={{ fontSize: "12px", fontWeight: "700", color: "var(--text-muted)", textTransform: "uppercase", marginBottom: "8px", display: "flex", alignItems: "center", gap: "6px" }}>
-            <ShieldCheck size={14} color="var(--primary)" /> 1-Click Demo Profiles:
-          </div>
-          <div style={{ display: "flex", gap: "6px" }}>
-            <button
-              type="button"
-              onClick={() => handleQuickLogin("student@futurefocus.com", "Password@123")}
-              className="btn btn-secondary btn-sm"
-              style={{ flex: 1, fontSize: "11.5px" }}
-            >
-              Student Demo
-            </button>
-            <button
-              type="button"
-              onClick={() => handleQuickLogin("instructor@futurefocus.com", "Password@123")}
-              className="btn btn-secondary btn-sm"
-              style={{ flex: 1, fontSize: "11.5px" }}
-            >
-              Faculty Demo
-            </button>
-            <button
-              type="button"
-              onClick={() => handleQuickLogin("admin@futurefocus.com", "Password@123")}
-              className="btn btn-secondary btn-sm"
-              style={{ flex: 1, fontSize: "11.5px" }}
-            >
-              Admin Demo
-            </button>
-          </div>
         </div>
 
         {/* Error Alert */}
