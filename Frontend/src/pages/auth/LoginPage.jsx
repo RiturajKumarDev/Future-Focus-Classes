@@ -101,7 +101,7 @@ const LoginPage = () => {
             Sign in to your account
           </h1>
           <p style={{ fontSize: "14px", color: "var(--text-secondary)" }}>
-            Welcome back! Please enter your credentials to continue.
+            Welcome back! Enter your credentials.
           </p>
         </div>
 
